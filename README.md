@@ -1,1 +1,3 @@
-# group_8_mobile
+# Tạ Thành Bảo (nhóm trưởng)
+# Bùi Văn Bách
+# Hoàng Nam Thế
