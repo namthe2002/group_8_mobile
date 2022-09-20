@@ -83,6 +83,8 @@ class _BackgroundState extends State<Background> {
                 width: 90,
                 height: 130,
                 child: singleBox(11, listBoard[11].isMandari)),
+
+            
             SizedBox(
               width: 10,
             ),
