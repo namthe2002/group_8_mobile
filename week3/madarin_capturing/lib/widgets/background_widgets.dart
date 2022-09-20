@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -83,8 +82,6 @@ class _BackgroundState extends State<Background> {
                 width: 90,
                 height: 130,
                 child: singleBox(11, listBoard[11].isMandari)),
-
-            
             SizedBox(
               width: 10,
             ),
@@ -178,40 +175,101 @@ class _BackgroundState extends State<Background> {
     )));
   }
 
+  var stop = false;
   // Game process
-  int directRight(int index)  {
+  void directRight(int index) {
+    stop = false;
     int boc = listBoard[index].score;
     int i = index;
     int score = 0;
     listBoard[index].score = 0;
-    while (boc > 0)  {
-      boc--;
-      i++;
 
-
-      if (i == 12) i = 0;
-      listBoard[i].score++;
-      if (boc == 0) {
-        if (!listBoard[i + 1 == 12 ? 0 : i + 1].isMandari &&
-            listBoard[i + 1 == 12 ? 0 : i + 1].score != 0) {
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      try {
+        setState(() {
+          listBoard[i].color = Colors.orange;
+        });
+        print('${timer.tick}');
+        if (boc > 0) {
+          boc--;
           i++;
           if (i == 12) i = 0;
-          boc = listBoard[i].score;
-          listBoard[i].score = 0;
-        }
-      }
-    }
-    while (listBoard[i + 1 == 12 ? 0 : i + 1].score == 0 &&
-        listBoard[i + 2 == 12 ? 0 : i + 2].score != 0 &&
-        !listBoard[i + 1 == 12 ? 0 : i + 1].isMandari) {
-      i = i + 1 == 12 ? 0 : i + 1;
-      i = i + 1 == 12 ? 0 : i + 1;
-      if (listBoard[i].isMandari) score += 9;
-      score += listBoard[i].score;
-      listBoard[i].score = 0;
-    }
+          listBoard[i].score++;
+          if (boc == 0) {
+            if (!listBoard[i + 1 == 12 ? 0 : i + 1].isMandari &&
+                listBoard[i + 1 == 12 ? 0 : i + 1].score != 0) {
+              i++;
+              if (i == 12) i = 0;
+              boc = listBoard[i].score;
+              listBoard[i].score = 0;
+            } else {
+              stop = true;
+              print('stop 2');
+            }
+          } else {
+            print('stop 2');
 
-    return score;
+          }
+        }
+
+        if (stop) {
+          timer.cancel();
+          while (listBoard[i + 1 == 12 ? 0 : i + 1].score == 0 &&
+              listBoard[i + 2 == 12 ? 0 : i + 2].score != 0 &&
+              !listBoard[i + 1 == 12 ? 0 : i + 1].isMandari) {
+            i = i + 1 == 12 ? 0 : i + 1;
+            i = i + 1 == 12 ? 0 : i + 1;
+            if (listBoard[i].isMandari) score += 9;
+            score += listBoard[i].score;
+            listBoard[i].score = 0;
+
+          }
+          if (currentPlayer == PLAYER_1) {
+
+            Score1 = score;
+          } else {
+            Score2 = score;
+          }
+        }
+      } catch (e){
+        timer.cancel();
+      }
+
+    });
+
+    // =======================
+    // while (boc > 0)  {
+    //   boc--;
+    //   i++;
+    //   print('$i');
+    //
+    //   if (i == 12) i = 0;
+    //   listBoard[i].score++;
+    //   if (boc == 0) {
+    //     if (!listBoard[i + 1 == 12 ? 0 : i + 1].isMandari &&
+    //         listBoard[i + 1 == 12 ? 0 : i + 1].score != 0) {
+    //       i++;
+    //       if (i == 12) i = 0;
+    //       boc = listBoard[i].score;
+    //       listBoard[i].score = 0;
+    //     }
+    //   }
+    // }
+    // while (listBoard[i + 1 == 12 ? 0 : i + 1].score == 0 &&
+    //     listBoard[i + 2 == 12 ? 0 : i + 2].score != 0 &&
+    //     !listBoard[i + 1 == 12 ? 0 : i + 1].isMandari) {
+    //   i = i + 1 == 12 ? 0 : i + 1;
+    //   i = i + 1 == 12 ? 0 : i + 1;
+    //   if (listBoard[i].isMandari) score += 9;
+    //   score += listBoard[i].score;
+    //   listBoard[i].score = 0;
+    // }
+    //
+    // if (currentPlayer == PLAYER_1) {
+    //   Score1 = score;
+    // } else {
+    //   Score2 = score;
+    // }
   }
 
   int directLeft(int index) {
@@ -320,11 +378,7 @@ class _BackgroundState extends State<Background> {
                                 setState(() {
                                   changeTurn();
                                   checkScattered();
-                                  if (index <= 5) {
-                                    Score1 += directRight(index);
-                                  } else {
-                                    Score2 += directRight(index);
-                                  }
+                                  directRight(index);
                                   checkForWin();
                                 });
                               },
@@ -387,11 +441,8 @@ class _BackgroundState extends State<Background> {
                                 setState(() {
                                   changeTurn();
                                   checkScattered();
-                                  if (index <= 5) {
-                                    Score1 += directRight(index);
-                                  } else {
-                                    Score2 += directRight(index);
-                                  }
+
+                                  directRight(index);
                                   checkForWin();
                                 });
                                 Navigator.of(context).pop();
