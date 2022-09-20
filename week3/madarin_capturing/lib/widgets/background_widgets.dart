@@ -79,16 +79,17 @@ class _BackgroundState extends State<Background> {
               border: Border.all(width: 1, color: Colors.black87),
               borderRadius: BorderRadius.circular(15)),
           child:
-          GridView.count(
-              crossAxisCount: 6,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              childAspectRatio: 1,
-              children: [
-                ...listBoard.map((e) {
-                  return singleBox(listBoard.indexOf(e), e.isMandari);
-                })
-              ]),
+            
+          // GridView.count(
+          //     crossAxisCount: 6,
+          //     mainAxisSpacing: 20,
+          //     crossAxisSpacing: 20,
+          //     childAspectRatio: 1,
+          //     children: [
+          //       ...listBoard.map((e) {
+          //         return singleBox(listBoard.indexOf(e), e.isMandari);
+          //       })
+          //     ]),
         ),
         SizedBox(
           height: deviceSize.height / 5,
