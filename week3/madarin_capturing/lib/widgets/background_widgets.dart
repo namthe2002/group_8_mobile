@@ -78,7 +78,8 @@ class _BackgroundState extends State<Background> {
           decoration: BoxDecoration(
               border: Border.all(width: 1, color: Colors.black87),
               borderRadius: BorderRadius.circular(15)),
-          child: GridView.count(
+          child:
+          GridView.count(
               crossAxisCount: 6,
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
@@ -88,11 +89,6 @@ class _BackgroundState extends State<Background> {
                   return singleBox(listBoard.indexOf(e), e.isMandari);
                 })
               ]),
-          // GridView.builder(gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //     crossAxisCount: 6),
-          //     itemBuilder: (BuildContext context, int index) {
-          //
-          //     })
         ),
         SizedBox(
           height: deviceSize.height / 5,
@@ -278,13 +274,15 @@ class _BackgroundState extends State<Background> {
       highlightColor: Colors.white,
       child: Container(
         decoration: BoxDecoration(
-            color: listBoard[index].score==0?Colors.grey:(listBoard[index].isMandari ? Colors.red : Colors.blue),
+            color: listBoard[index].score == 0
+                ? Colors.grey
+                : (listBoard[index].isMandari ? Colors.red : Colors.blue),
             borderRadius: BorderRadius.circular(15),
             border: Border.all(width: 5, color: Colors.black)),
         child: Align(
             alignment: Alignment.center,
             child: Text(
-              '${listBoard[index].score}',
+              '${[index]}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 23,
@@ -297,7 +295,7 @@ class _BackgroundState extends State<Background> {
   void checkScattered() {
     int temp1 = 0;
     int temp2 = 0;
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 1; i < 5; i++) {
       temp1 += listBoard[i].score;
     }
     for (int i = 6; i < 11; i++) {
