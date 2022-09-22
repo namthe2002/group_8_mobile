@@ -42,7 +42,8 @@ dev_dependencies:
   cloud_firestore: ^3.4.9
   google_sign_in: ^5.4.1
   firebase_auth: ^3.10.0
-  jitsi_meet: ^4.0.0
+#  jitsi_meet: ^0.4.2
+  jitsi_meet_wrapper: ^0.0.5
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

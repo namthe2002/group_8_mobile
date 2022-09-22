@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:zoom/screens/history_meeting.dart';
 
 import '../widgets/home_meeting_button.dart';
+import 'meeting_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +20,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  List<Widget> pages = [
+      MeetingScreen(),
+    const HistoryMeetingScreen(),
+    const Text('Liên lạc'),
+    const Text('Setting'),
+
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,49 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(onPressed: () {}, icon: Icon(Icons.emergency_recording))
         ],
       ),
-      body: Column(
-
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                HomeMeetingButton(
-                  onPressed: () {},
-                  icon: Icons.video_call_rounded,
-                  text: 'Cuộc họp mới',
-                  color: Colors.orange.shade700,
-                ),
-                HomeMeetingButton(
-                  onPressed: () {},
-                  icon: Icons.add_box_rounded,
-                  text: 'Tham gia',
-                  color: Colors.blue.shade500,
-                ),
-                HomeMeetingButton(
-                  onPressed: () {},
-                  icon: Icons.calendar_month_rounded,
-                  text: 'Lên lịch',
-                  color: Colors.blue.shade500,
-                ),
-                HomeMeetingButton(
-                  onPressed: () {},
-                  icon: Icons.cast_sharp,
-                  text: 'Chia sẻ Màn hình',
-                  color: Colors.blue.shade500,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 120),
-            child: Image.asset('assets/images/zoom2.png'),
-          ),
-          const Expanded(child: Text('Tìm người và bắt đầu cuộc trò chuyện!')),
-
-        ],
-      ),
+      body: pages[_page],
       bottomNavigationBar: SafeArea(
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -107,3 +75,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
