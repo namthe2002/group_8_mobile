@@ -18,8 +18,8 @@ Thành Viên
 
 ## Week 3
 
-*Simple game
-*Gif sử dụng các loại giao diện:
-*Gridview, Text, IconButton, AlertDialog, SnackBar
+* Simple game
+* Gif sử dụng các loại giao diện:
+* Gridview, Text, IconButton, AlertDialog, SnackBar
 
 ![video-a26841ef-61b3-42c7-891a-1270752f9ba8-1663839453](https://user-images.githubusercontent.com/80814904/191714593-6c62d9b2-9d4e-4faa-bb42-694581556ac3.gif)
