@@ -71,7 +71,7 @@ class _BackgroundState extends State<Background> {
                             color:
                             currentPlayer == PLAYER_2 ? Colors.red : Colors.black),
                       ),
-                      Text('Score: $Score2',
+                      Text('Score: $Score1',
                           style: const TextStyle(
                               fontSize: 23, fontWeight: FontWeight.bold)),
                     ],
@@ -163,7 +163,7 @@ class _BackgroundState extends State<Background> {
                               color: currentPlayer == PLAYER_1
                                   ? Colors.red
                                   : Colors.black)),
-                      Text('Score: $Score1',
+                      Text('Score: $Score2',
                           style: const TextStyle(
                               fontSize: 23, fontWeight: FontWeight.bold)),
                       IconButton(
@@ -347,7 +347,7 @@ class _BackgroundState extends State<Background> {
 
     if (currentPlayer == PLAYER_1) {
       return InkWell(
-        onTap: listBoard[index].score == 0 || index < 5
+        onTap: listBoard[index].score == 0 || (index < 6 || index > 10 )
             ? null
             : () {
           if (endGame) return;
@@ -408,7 +408,7 @@ class _BackgroundState extends State<Background> {
       );
     } else {
       return InkWell(
-        onTap: listBoard[index].score == 0 || (index < 11 && index > 5)
+        onTap: listBoard[index].score == 0 || (index > 4)
             ? null
             : () {
           if (endGame) return;
