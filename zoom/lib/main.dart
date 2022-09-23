@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zoom/resources/auth_methods.dart';
 import 'package:zoom/screens/home_screen.dart';
 import 'package:zoom/screens/login_screen.dart';
+import 'package:zoom/screens/video_call_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,18 +22,20 @@ class myApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginScreen(),
         '/home-screen': (context) => const HomeScreen(),
+        '/video-call-screen': (context) => const VideoCallScreen(),
       },
-      home: StreamBuilder(
-          stream: AuthMethods().authChanges,
-          builder: (context, snapshot) {
-            // if (snapshot.connectionState == ConnectionState.waiting) {
-            //   return const Center(child: CircularProgressIndicator());
-            // }
-            // if (snapshot.hasData) {
-            //   const HomeScreen();
-            // }
-            return const HomeScreen();
-          }),
+      home:VideoCallScreen(),
+      // StreamBuilder(
+      //     stream: AuthMethods().authChanges,
+      //     builder: (context, snapshot) {
+      //       // if (snapshot.connectionState == ConnectionState.waiting) {
+      //       //   return const Center(child: CircularProgressIndicator());
+      //       // }
+      //       // if (snapshot.hasData) {
+      //       //   const HomeScreen();
+      //       // }
+      //       return const VideoCallScreen();
+      //     }),
     );
   }
 }

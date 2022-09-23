@@ -14,6 +14,10 @@ class MeetingScreen extends StatelessWidget {
     _jitsiMeetMethods.createMeeting(roomName: roomName, isAudioMuted: true, isVideoMuted: true);
   }
 
+  joinNewMeeting (BuildContext context) {
+    Navigator.of(context).pushNamed('/video-call-screen');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
