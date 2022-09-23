@@ -34,28 +34,33 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   late TextEditingController meetingIdController;
   late TextEditingController nameController;
   final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
-    bool isAudioMuted = true;
-    bool isVideoMuted = true;
-  //
-  // @override
-  // void initState() {
-  //   meetingIdController = TextEditingController();
-  //   nameController = TextEditingController(
-  //     text: _authMethods.user.displayName,
-  //   );
-  //   isAudioMuted = true;
-  //   isVideoMuted = true;
-  //   super.initState();
-  // }
+  bool isAudioMuted = true;
+  bool isVideoMuted = true;
 
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   meetingIdController.dispose();
-  //   nameController.dispose();
-  //   JitsiMeet.removeAllListeners();
-  // }
+  @override
+  void initState() {
+    meetingIdController = TextEditingController();
+    nameController = TextEditingController(
+      text: _authMethods.user?.displayName,
+    );
+    super.initState();
+  }
 
+  @override
+  void dispose() {
+    super.dispose();
+    meetingIdController.dispose();
+    nameController.dispose();
+  }
+
+  _joinMeeting() {
+    _jitsiMeetMethods.createMeeting(
+      roomName: meetingIdController.text,
+      isAudioMuted: isAudioMuted,
+      isVideoMuted: isVideoMuted,
+      username: nameController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +136,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
+        shape: const Border(
+            bottom: BorderSide(
+          width: 1,
+          color: Colors.grey,
+        )),
         elevation: 0,
         backgroundColor: Colors.white,
         title: const Text(
@@ -139,118 +149,110 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: Column(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: SingleChildScrollView(
+            child: Column(
               children: [
-                const SizedBox(
-                  height: 60,
-                  child: TextField(
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      hintText: 'ID Cuộc họp',
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 60,
-                  child: TextField(
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      filled: true,
-
-                      fillColor: Colors.white,
-                      border: InputBorder.none,
-                      hintText: 'Tên của bạn',
-                      hintTextDirection: TextDirection.ltr,
-                      //  contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: 350,
-
-                  child: ElevatedButton(
-                      onPressed: null,
-
-                      child: Text(
-                        'Tham gia',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 0.3)),
+                      height: 53,
+                      child: const TextField(
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: InputBorder.none,
+                          hintText: 'ID Cuộc họp',
+                        ),
                       ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 0.3)),
+                      height: 53,
+                      child: const TextField(
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: InputBorder.none,
+                          hintText: 'Tên của bạn',
+                          hintTextDirection: TextDirection.ltr,
+                          //  contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: nameController.text.isEmpty?null: _joinMeeting,
                       style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                            fixedSize: const Size(240, 47), primary: Colors.deepOrange),
-
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          fixedSize: const Size(240, 47),
+                          primary: Colors.blue.shade600),
+                      child: const Text(
+                        'Tham gia',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 18.0),
+                      child: Text('TÙY CHỌN THAM GIA'),
+                    ),
+                    Container(
+                      height: 56,
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                      child: MeetingOption(
+                        text: 'Không kết nối âm thanh',
+                        isMute: isAudioMuted,
+                        onChange: toggleAudioMuted,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 1.5,
+                    ),
+                    Container(
+                      decoration:
+                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                      height: 56,
+                      child: MeetingOption(
+                        text: 'Tắt Video của tôi',
+                        isMute: isVideoMuted,
+                        onChange: toggleVideoMuted,
+                      ),
+                    ),
+                  ],
                 ),
-                // const SizedBox(height: 20),
-                // Container(
-                //
-                //   child: Column(
-                //     children: const [
-                //       Text('TÙY CHỌN THAM GIA')
-                //     ],
-                //   ),),
-                // MeetingOption(
-                //   text: 'Không kết nối âm thanh',
-                //   isMute: isAudioMuted,
-                //   onChange: onAudioMuted,
-                // ),
-                // MeetingOption(
-                //   text: 'Tắt Video của tôi',
-                //   isMute: isVideoMuted,
-                //   onChange: onVideoMuted,
-                // ),
-
               ],
             ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [const SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('TÙY CHỌN THAM GIA', )
-                      ],
-                    ),),
-                  MeetingOption(
-                    text: 'Không kết nối âm thanh',
-                    isMute: isAudioMuted,
-                    onChange: onAudioMuted,
-                  ),
-                  MeetingOption(
-                    text: 'Tắt Video của tôi',
-                    isMute: isVideoMuted,
-                    onChange: onVideoMuted,
-                  ),],
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );
   }
-  void onAudioMuted (bool temp) {
+
+  void toggleAudioMuted(bool temp) {
     setState(() {
       isAudioMuted = temp;
     });
   }
-  void onVideoMuted (bool temp) {
+
+  void toggleVideoMuted(bool temp) {
     setState(() {
       isVideoMuted = temp;
     });

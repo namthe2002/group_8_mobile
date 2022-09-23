@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 // import 'package:jitsi_meet/jitsi_meet.dart';
@@ -11,16 +12,25 @@ class JitsiMeetMethods {
   void createMeeting(
       {required String roomName,
       required bool isAudioMuted,
-      required bool isVideoMuted}) async {
+      required bool isVideoMuted,
+      String username = ''}) async {
     try {
+      String? name = _authMethods.user?.displayName;
+      if (username.isEmpty) {
+        name = _authMethods.user?.displayName;
+      } else {
+        name = username;
+      }
+
       var options = JitsiMeetingOptions(
-          roomNameOrUrl: roomName,
-          // isAudioMuted: isAudioMuted,
-          // isVideoMuted: isVideoMuted,
-          // userAvatarUrl: _authMethods.user.photoURL,
-          // userDisplayName: _authMethods.user.displayName,
-          // userEmail: _authMethods.user.email
+        roomNameOrUrl: roomName,
+        // isAudioMuted: isAudioMuted,
+        // isVideoMuted: isVideoMuted,
+        // userAvatarUrl: _authMethods.user.photoURL,
+        userDisplayName: name,
+        // userEmail: _authMethods.user.email
       );
+
       await JitsiMeetWrapper.joinMeeting(options: options);
       //
       // FeatureFlag featureFlag = FeatureFlag();
