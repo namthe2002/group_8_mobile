@@ -6,8 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
 import 'package:zoom/resources/auth_methods.dart';
 
+import 'auth_methods.dart';
+import 'firestore_methods.dart';
+
 class JitsiMeetMethods {
   final AuthMethods _authMethods = AuthMethods();
+  final FirestoreMethods _firestoreMethods = FirestoreMethods();
 
   void createMeeting(
       {required String roomName,
@@ -24,6 +28,7 @@ class JitsiMeetMethods {
 
       var options = JitsiMeetingOptions(
         roomNameOrUrl: roomName,
+
         // isAudioMuted: isAudioMuted,
         // isVideoMuted: isVideoMuted,
         // userAvatarUrl: _authMethods.user.photoURL,
@@ -31,10 +36,12 @@ class JitsiMeetMethods {
         // userEmail: _authMethods.user.email
       );
 
-      await JitsiMeetWrapper.joinMeeting(options: options);
-      //
-      // FeatureFlag featureFlag = FeatureFlag();
-      // featureFlag.welcomePageEnabled = false;
+      await _firestoreMethods.addToMeetHistory(roomName);
+      await JitsiMeetWrapper.joinMeeting(options: options, listener: JitsiMeetingListener());
+      FeatureFlag.isWelcomePageEnabled;
+      FeatureFlag.resolution;
+      FeatureFlag.isAddPeopleEnabled;
+      // FeatureFlag.
       // featureFlag.resolution = FeatureFlagVideoResolution
       //     .MD_RESOLUTION; // Limit video resolution to 360p
 

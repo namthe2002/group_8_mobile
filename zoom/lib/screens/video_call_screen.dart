@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../resources/auth_methods.dart';
@@ -136,6 +137,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
+        leading: IconButton(onPressed: () { Navigator.of(context).pushReplacementNamed('/home-screen'); }, icon: Icon(Icons.arrow_back_ios_new), color: CupertinoColors.darkBackgroundGray,),
         shape: const Border(
             bottom: BorderSide(
           width: 1,
@@ -162,7 +164,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey, width: 0.3)),
                       height: 53,
-                      child: const TextField(
+                      child: TextField(
+                        controller: meetingIdController,
                         maxLines: 1,
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
@@ -178,7 +181,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey, width: 0.3)),
                       height: 53,
-                      child: const TextField(
+                      child: TextField(
+                        controller: nameController,
                         maxLines: 1,
                         textAlign: TextAlign.center,
                         keyboardType: TextInputType.text,
@@ -194,7 +198,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: nameController.text.isEmpty?null: _joinMeeting,
+                      onPressed: _joinMeeting,
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
