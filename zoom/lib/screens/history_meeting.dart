@@ -17,11 +17,22 @@ class HistoryMeetingScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: (snapshot.data as dynamic).docs.length,
             itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(
-                    'Tên phòng: ${(snapshot.data as dynamic).docs[index]['meetingName']}'),
-                subtitle: Text(
-                  'Tham gia vào lúc: ${(snapshot.data as dynamic).docs[index]['creatAt']}'
+              return Card(
+                  shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                  color: Colors.green.shade300,
+              ),
+              borderRadius: BorderRadius.circular(15.0),),
+                child: ListTile(
+                  // shape: Border(
+                  //   bottom: BorderSide(),
+                  // ),
+                  title: Text(
+                      'Tên phòng: ${(snapshot.data as dynamic).docs[index]['meetingName']}'),
+                  subtitle: Text(
+                   'Chủ phòng: ${(snapshot.data as dynamic).docs[index]['hostName']}'
+                        '\nTham gia vào lúc: ${(snapshot.data as dynamic).docs[index]['creatAt']}'
+                  ),
                 ),
               );
             },

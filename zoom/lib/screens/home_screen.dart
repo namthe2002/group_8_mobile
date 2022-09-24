@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:zoom/resources/auth_methods.dart';
 import 'package:zoom/screens/history_meeting.dart';
 import 'package:zoom/screens/setting_screen.dart';
-import 'package:zoom/widgets/custom_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-
-import '../widgets/home_meeting_button.dart';
 import 'meeting_screen.dart';
+import 'meeting_screen2.dart';
+extension HexColor on Color {
+  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
 
+  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
+  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
+      '${alpha.toRadixString(16).padLeft(2, '0')}'
+      '${red.toRadixString(16).padLeft(2, '0')}'
+      '${green.toRadixString(16).padLeft(2, '0')}'
+      '${blue.toRadixString(16).padLeft(2, '0')}';
+}
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -16,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final Color color = HexColor.fromHex('#38394d');
   void backToLogin(BuildContext context) {
     Navigator.of(context).pushNamed('login');
   }
@@ -27,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> pages = [
-    MeetingScreen(),
+    MeetingScreen2(),
     HistoryMeetingScreen(),
     const Text('Liên lạc'),
     SettingScreen(),
@@ -46,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.black54,
         centerTitle: true,
         title: const Text('Gặp gỡ & trò chuyện'),
-        
+
       ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(

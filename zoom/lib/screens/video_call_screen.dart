@@ -31,6 +31,7 @@ class VideoCallScreen extends StatefulWidget {
 
 class _VideoCallScreenState extends State<VideoCallScreen> {
   final Color color = HexColor.fromHex('DCD8D8FF');
+  final Color color2 = HexColor.fromHex('#f9f8f8');
   final AuthMethods _authMethods = AuthMethods();
   late TextEditingController meetingIdController;
   late TextEditingController nameController;
@@ -65,6 +66,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String textiD ='';
     // return Scaffold(
     //   backgroundColor: Colors.grey.shade200,
     //   //Colors.white,
@@ -135,9 +137,16 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     //   ),
     // );
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+
+      backgroundColor: color2,
       appBar: AppBar(
-        leading: IconButton(onPressed: () { Navigator.of(context).pushReplacementNamed('/home-screen'); }, icon: Icon(Icons.arrow_back_ios_new), color: CupertinoColors.darkBackgroundGray,),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/home-screen');
+          },
+          icon: Icon(Icons.arrow_back_ios_new),
+          color: CupertinoColors.darkBackgroundGray,
+        ),
         shape: const Border(
             bottom: BorderSide(
           width: 1,
@@ -158,47 +167,86 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             child: Column(
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 0.3)),
-                      height: 53,
-                      child: TextField(
-                        controller: meetingIdController,
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: InputBorder.none,
-                          hintText: 'ID Cuộc họp',
-                        ),
-                      ),
-                    ),
+                        // decoration: BoxDecoration(
+                        //     border: Border.all(color: Colors.grey, width: 0.3)),
+                        height: 53,
+                        child:
+                            // TextField(
+                            //   controller: meetingIdController,
+                            //   onChanged: (temp) {
+                            //     setState(() {
+                            //       meetingIdController.text = temp;
+                            //     });
+                            //   },
+                            //   maxLines: 1,
+                            //   textDirection: TextDirection.ltr ,
+                            //   textAlign: TextAlign.center,
+                            //   keyboardType: TextInputType.number,
+                            //   decoration: InputDecoration(
+                            //     filled: true,
+                            //     fillColor: Colors.white,
+                            //     border: InputBorder.none,
+                            //     hintText: 'ID Cuộc họp',
+                            //   ),
+                            // ),
+                            TextField(
+                          onChanged: (val) {
+                            setState(() {
+                              textiD = val;
+                            });
+
+                          },
+                          controller: meetingIdController,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: InputBorder.none,
+                            hintText: 'Id cuộc họp',
+                            hintTextDirection: TextDirection.ltr,
+                          ),
+                        )),
                     Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 0.3)),
-                      height: 53,
-                      child: TextField(
-                        controller: nameController,
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: InputBorder.none,
-                          hintText: 'Tên của bạn',
-                          hintTextDirection: TextDirection.ltr,
-                          //  contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
+                        // decoration: BoxDecoration(
+                        //     border: Border.all(color: Colors.grey, width: 0.3)),
+                        height: 53,
+                        child: TextField(
+                          controller: nameController,
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: InputBorder.none,
+                            hintText: 'Tên của bạn',
+                            hintTextDirection: TextDirection.ltr,
+                          ),
+                        )
+                        // TextField(
+                        //   controller: nameController,
+                        //   maxLines: 1,
+                        //   textAlign: TextAlign.center,
+                        //   keyboardType: TextInputType.text,
+                        //   decoration: InputDecoration(
+                        //     filled: true,
+                        //     fillColor: Colors.white,
+                        //     border: InputBorder.none,
+                        //     hintText: 'Tên của bạn',
+                        //     hintTextDirection: TextDirection.ltr,
+                        //     //  contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
+                        //   ),
+                        // ),
                         ),
-                      ),
-                    ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: _joinMeeting,
+                      onPressed: meetingIdController.text.trim().isEmpty
+                          ? null
+                          : _joinMeeting,
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -219,8 +267,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                     ),
                     Container(
                       height: 56,
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                      // decoration:
+                      //     BoxDecoration(border: Border.all(color: Colors.grey)),
                       child: MeetingOption(
                         text: 'Không kết nối âm thanh',
                         isMute: isAudioMuted,
@@ -231,8 +279,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       height: 1.5,
                     ),
                     Container(
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                      // decoration:
+                      //     BoxDecoration(border: Border.all(color: Colors.grey)),
                       height: 56,
                       child: MeetingOption(
                         text: 'Tắt Video của tôi',

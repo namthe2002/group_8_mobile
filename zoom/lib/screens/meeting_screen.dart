@@ -4,10 +4,30 @@ import 'package:flutter/material.dart';
 import 'package:zoom/resources/jitsi_meet_methods.dart';
 
 import '../widgets/home_meeting_button.dart';
+extension HexColor on Color {
+  /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
 
+  /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
+  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
+      '${alpha.toRadixString(16).padLeft(2, '0')}'
+      '${red.toRadixString(16).padLeft(2, '0')}'
+      '${green.toRadixString(16).padLeft(2, '0')}'
+      '${blue.toRadixString(16).padLeft(2, '0')}';
+}
 class MeetingScreen extends StatelessWidget {
    MeetingScreen({Key? key}) : super(key: key);
-  final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
+
+
+   final Color cam = HexColor.fromHex('DCD8D8FF');
+   final Color xanh = HexColor.fromHex('#0a72ec');
+
+   final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
   createNewMeeting () async {
     var random = Random();
     String roomName = (random.nextInt(1000000)+1000000).toString();
@@ -33,7 +53,7 @@ class MeetingScreen extends StatelessWidget {
                   onPressed: createNewMeeting,
                   icon: Icons.video_call_rounded,
                   text: 'Cuộc họp mới',
-                  color: Colors.orange.shade700,
+                  color: cam,
                 ),
                 HomeMeetingButton(
                   onPressed: () {
@@ -41,19 +61,19 @@ class MeetingScreen extends StatelessWidget {
                   },
                   icon: Icons.add_box_rounded,
                   text: 'Tham gia',
-                  color: Colors.blue.shade500,
+                  color: xanh,
                 ),
                 HomeMeetingButton(
                   onPressed: () {},
                   icon: Icons.calendar_month_rounded,
                   text: 'Lên lịch',
-                  color: Colors.blue.shade500,
+                  color: xanh,
                 ),
                 HomeMeetingButton(
                   onPressed: () {},
                   icon: Icons.cast_sharp,
                   text: 'Chia sẻ Màn hình',
-                  color: Colors.blue.shade500,
+                  color: xanh,
                 ),
               ],
             ),

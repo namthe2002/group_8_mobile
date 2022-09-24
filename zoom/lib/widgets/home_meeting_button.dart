@@ -15,7 +15,7 @@ class HomeMeetingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 80,
       height: 97,
       child: GestureDetector(
 

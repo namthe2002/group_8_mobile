@@ -28,7 +28,6 @@ class JitsiMeetMethods {
 
       var options = JitsiMeetingOptions(
         roomNameOrUrl: roomName,
-
         // isAudioMuted: isAudioMuted,
         // isVideoMuted: isVideoMuted,
         // userAvatarUrl: _authMethods.user.photoURL,
