@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../resources/auth_methods.dart';
 import '../resources/jitsi_meet_methods.dart';
 import '../widgets/meeting_options.dart';
@@ -142,7 +142,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/home-screen');
+            //Navigator.of(context).pushReplacementNamed('/home-screen');
+            Get.back();
           },
           icon: Icon(Icons.arrow_back_ios_new),
           color: CupertinoColors.darkBackgroundGray,
@@ -202,7 +203,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             border: InputBorder.none,
@@ -210,7 +211,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                             hintTextDirection: TextDirection.ltr,
                           ),
                         )),
-                    Container(
+                    SizedBox(
                         // decoration: BoxDecoration(
                         //     border: Border.all(color: Colors.grey, width: 0.3)),
                         height: 53,
@@ -219,7 +220,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                           maxLines: 1,
                           textAlign: TextAlign.center,
                           keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             border: InputBorder.none,

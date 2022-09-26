@@ -15,7 +15,7 @@ class HomeMeetingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 80,
+      width: MediaQuery.of(context).size.width/5,
       height: 97,
       child: GestureDetector(
 

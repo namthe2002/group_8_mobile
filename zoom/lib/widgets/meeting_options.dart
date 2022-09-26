@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class MeetingOption extends StatelessWidget {
   final String text;
-  final bool isMute;
+  bool isMute;
   final Function(bool) onChange;
-  const MeetingOption({
+   MeetingOption({
     Key? key,
     required this.text,
     required this.isMute,

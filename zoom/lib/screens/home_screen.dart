@@ -28,9 +28,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final Color color = HexColor.fromHex('#38394d');
-  void backToLogin(BuildContext context) {
-    Navigator.of(context).pushNamed('login');
-  }
+
   int _page = 0;
   onPageChanged(int page) {
     setState(() {
@@ -46,9 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
     // CustomButton(text: 'Log out', onPress: () async {
     //    await FirebaseAuth.instance.signOut();
     // })
-
   ];
 
+  Map<int, String> titlePage = {
+    0: 'Gặp gỡ & trò chuyện',
+    1: 'Cuộc họp',
+    2: 'Liên lạc',
+    3: 'Thêm',
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black54,
         centerTitle: true,
-        title: const Text('Gặp gỡ & trò chuyện'),
+        title:  Text(titlePage[_page]!),
 
       ),
       body: pages[_page],

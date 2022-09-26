@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:zoom/utils/utils.dart';
-
+import 'package:get/get.dart';
 class AuthMethods {
   /// https://github.com/jitsi/jitsi-meet/blob/a618697e34d947f0cc0d9ee4a0fc79c76fbae5e6/react/features/base/flags/constants.js
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -46,14 +46,18 @@ class AuthMethods {
       }
     } on FirebaseAuthException catch (e) {
       // FirebaseAuthException dùng để bắt lỗi liên quan đến firebase xác thực
-      showSnackBar(context, e.message!);
+      // showSnackBar(context, e.message!);
+      Get.snackbar('Error AUTH: ', 'Lỗi xác thực : $e');
       res = false;
     }
     return res;
   }
 
+
   Future<void> signOut() async {
     try {
+      final googleSignIn = GoogleSignIn();
+      await googleSignIn.disconnect();
       await _auth.signOut();
 
     } catch (e) {

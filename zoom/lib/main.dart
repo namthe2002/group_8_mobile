@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:zoom/resources/auth_methods.dart';
 import 'package:zoom/screens/home_screen.dart';
 import 'package:zoom/screens/login_screen.dart';
+import 'package:get/get.dart';
 import 'package:zoom/screens/video_call_screen.dart';
+import 'package:zoom/temp/welcome.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +19,7 @@ class myApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'zoom',
         theme: ThemeData(
@@ -28,7 +30,17 @@ class myApp extends StatelessWidget {
           '/home-screen': (context) => const HomeScreen(),
           '/video-call-screen': (context) => const VideoCallScreen(),
         },
-        home: AuthMethods().user != null ? HomeScreen() : LoginScreen()
+        initialRoute: '/',
+        getPages: [
+          GetPage(name: '/', page: () => AuthMethods().user != null ? const HomeScreen() : const LoginScreen()),
+          GetPage(name: '/login', page: () => const LoginScreen()),
+          GetPage(name: '/video-call-screen', page: () => const VideoCallScreen()),
+
+        ],
+
+        home:
+
+        AuthMethods().user != null ? const HomeScreen() : const LoginScreen()
         // StreamBuilder(
         //     stream: AuthMethods().authChanges,
         //     builder: (context, snapshot) {

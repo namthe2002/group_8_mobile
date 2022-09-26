@@ -1,7 +1,8 @@
 import 'dart:math';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom/resources/jitsi_meet_methods.dart';
+import 'package:zoom/screens/video_call_screen.dart';
 
 import '../widgets/home_meeting_button.dart';
 extension HexColor on Color {
@@ -35,7 +36,9 @@ class MeetingScreen extends StatelessWidget {
   }
 
   joinNewMeeting (BuildContext context) {
-    Navigator.of(context).pushNamed('/video-call-screen');
+    //Navigator.of(context).pushNamed('/video-call-screen');
+    Get.to(const VideoCallScreen());
+
   }
 
   @override
@@ -57,7 +60,8 @@ class MeetingScreen extends StatelessWidget {
                 ),
                 HomeMeetingButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/video-call-screen');
+                    //Navigator.of(context).pushNamed('/video-call-screen');
+                    Get.to(const VideoCallScreen());
                   },
                   icon: Icons.add_box_rounded,
                   text: 'Tham gia',

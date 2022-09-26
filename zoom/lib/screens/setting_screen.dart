@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:zoom/screens/login_screen.dart';
 
 import '../resources/auth_methods.dart';
 import '../widgets/custom_button.dart';
@@ -25,28 +27,88 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = HexColor.fromHex('#f9f8f8');
-
     final AuthMethods _authMethods = AuthMethods();
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(top: 18.0),
+        padding: const EdgeInsets.only(top: 18, right: 8.0, left: 8.0),
         child: Column(
           children: [
             Container(
+              height: 100,
               decoration: BoxDecoration(
-                color: color,
-              ),
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(15)),
               child: ListTile(
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(15.0),
-                  child: Image.network(
-                    '${_authMethods.user?.photoURL}',
+                  visualDensity: VisualDensity(vertical: 3), // to expand
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Image.network(
+                      '${_authMethods.user?.photoURL}',
+                      fit: BoxFit.fill,
+                    ),
                   ),
+                  title: Text('${_authMethods.user?.displayName}'),
+                  subtitle: Row(
+                    children: [
+                      Image.asset(
+                        'assets/icons/ggicon.png',
+                        width: 20,
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text('${_authMethods.user?.email}'),
+                    ],
+                  )),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Text('Các tính năng thêm'.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
                 ),
-                title: Text('${_authMethods.user?.displayName}'),
-                subtitle: Text('${_authMethods.user?.email}'),
+                textAlign: TextAlign.start,
+                softWrap: true),
+            Divider(),
+            const ListTile(
+              leading: Icon(
+                Icons.settings,
+                color: Colors.black,
+              ),
+              title: Text('Chung'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+                color: Colors.grey,
+              ),
+            ),
+
+            const ListTile(
+              leading: Icon(
+                Icons.qr_code,
+                color: Colors.black,
+              ),
+              title: Text('Quét mã QR'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+                color: Colors.grey,
+              ),
+            ),
+            const ListTile(
+              leading: Icon(
+                Icons.info_outline,
+                color: Colors.black,
+              ),
+              title: Text('Thông tin'),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+                color: Colors.grey,
               ),
             ),
             // Text(
@@ -66,10 +128,11 @@ class SettingScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   CustomButton(
-                      text: 'Log out',
+                      text: 'Đăng xuất',
                       onPress: () async {
                         await _authMethods.signOut();
-                        Navigator.of(context).pushNamed('/login');
+                        // Navigator.of(context).pushNamed('/login');
+                        Get.offAll(const LoginScreen());
                       }),
                 ],
               ),
