@@ -17,6 +17,9 @@ class HistoryMeetingScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: (snapshot.data as dynamic).docs.length,
             itemBuilder: (context, index) {
+              if((snapshot.data as dynamic).docs.length == 0) {
+                return Center(child: Text('Lịch sử cuộc họp trống'),);
+              }
               return Card(
                   shape: RoundedRectangleBorder(
                   side: BorderSide(
