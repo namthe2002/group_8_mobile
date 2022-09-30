@@ -23,3 +23,11 @@ Thành Viên
 * Gridview, Text, IconButton, AlertDialog, SnackBar
 
 ![video-a26841ef-61b3-42c7-891a-1270752f9ba8-1663839453](https://user-images.githubusercontent.com/80814904/191714593-6c62d9b2-9d4e-4faa-bb42-694581556ac3.gif)
+
+## Week 4
+
+* Update screen từ figma
+
+![image](https://user-images.githubusercontent.com/80814904/193201358-5379797e-6433-4c63-9587-9acf848abc85.png)
+
+![image](https://user-images.githubusercontent.com/80814904/193201439-65ff0499-0883-406f-991d-2ab249079661.png)
