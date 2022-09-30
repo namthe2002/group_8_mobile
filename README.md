@@ -27,7 +27,6 @@ Thành Viên
 ## Week 4
 
 * Update screen từ figma
+<img src="https://user-images.githubusercontent.com/80814904/193201358-5379797e-6433-4c63-9587-9acf848abc85.png" alt="Home meeting screen" width="250" />
 
-![image](https://user-images.githubusercontent.com/80814904/193201358-5379797e-6433-4c63-9587-9acf848abc85.png)
-
-![image](https://user-images.githubusercontent.com/80814904/193201439-65ff0499-0883-406f-991d-2ab249079661.png)
+<img src="https://user-images.githubusercontent.com/80814904/193201439-65ff0499-0883-406f-991d-2ab249079661.png" alt="Join meeting screen" width="250" />
