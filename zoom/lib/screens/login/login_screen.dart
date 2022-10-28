@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:zoom/resources/auth_methods.dart';
 import 'package:zoom/screens/home_screen.dart';
+import 'package:zoom/screens/login/sign_in/signin_screen.dart';
+import 'package:zoom/screens/sign_up/check_age_screen.dart';
 import 'package:zoom/widgets/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,9 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 25),
-            child: Container(
-              child: Image.asset('assets/images/zoom1.png', fit: BoxFit.fill),
-            ),
+            child: Image.asset('assets/images/zoom1.png', fit: BoxFit.fill),
           ),
           CustomButton(
               text: 'Đăng nhập với Google',
@@ -51,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TextButton(
                 onPressed: () {
-
+                  Get.to(CheckAge());
                 },
                 child: const Text(
                   "Đăng ký",
@@ -63,9 +65,9 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextButton(
                   onPressed: () {
-
+                    Get.to(const SignInScreen());
                   },
-                  child: Text(
+                  child: const Text(
                     "Đăng nhập",
                     style: TextStyle(
                       color: Colors.blue,

@@ -1,8 +1,12 @@
+// ignore: depend_on_referenced_packages
 import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:zoom/utils/utils.dart';
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 class AuthMethods {
   /// https://github.com/jitsi/jitsi-meet/blob/a618697e34d947f0cc0d9ee4a0fc79c76fbae5e6/react/features/base/flags/constants.js
@@ -35,11 +39,15 @@ class AuthMethods {
           // check xem người dùng vừa được đăng ký
           // Create a CollectionReference called users that references the firestore collection
           //Đặt dữ liệu của 1 user trên firebase, ghi đè lên mọi user hiện có. Nếu chưa tồn tại, nó sẽ được tạo.
+          print('------------------------------------------------------------${user.uid}');
+          print('------------------------------------------------------------${user.toString()}');
           await _firestore.collection('users').doc(user.uid).set({
             'username': user.displayName,
             'uid': user.uid,
             'profilePhoto': user.photoURL,
           });
+          print('------------------------------------------------------------${user.uid}');
+          print('------------------------------------------------------------${user.toString()}');
           //logging in
         }
         res = true;
@@ -61,7 +69,9 @@ class AuthMethods {
       await _auth.signOut();
 
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

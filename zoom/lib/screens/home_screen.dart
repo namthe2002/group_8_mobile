@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:zoom/screens/history_meeting.dart';
 import 'package:zoom/screens/setting_screen.dart';
-import 'meeting_screen.dart';
+
 import 'meeting_screen2.dart';
+
 extension HexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
   static Color fromHex(String hexString) {
@@ -19,6 +20,7 @@ extension HexColor on Color {
       '${green.toRadixString(16).padLeft(2, '0')}'
       '${blue.toRadixString(16).padLeft(2, '0')}';
 }
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -30,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Color color = HexColor.fromHex('#38394d');
 
   int _page = 0;
+
   onPageChanged(int page) {
     setState(() {
       _page = page;
@@ -38,9 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> pages = [
     MeetingScreen2(),
-    HistoryMeetingScreen(),
-    const Text('Liên lạc'),
-    SettingScreen(),
+    const HistoryMeetingScreen(),
+    Text('abc'),
+    const SettingScreen(),
     // CustomButton(text: 'Log out', onPress: () async {
     //    await FirebaseAuth.instance.signOut();
     // })
@@ -52,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
     2: 'Liên lạc',
     3: 'Thêm',
   };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.black54,
         centerTitle: true,
-        title:  Text(titlePage[_page]!),
-
+        title: Text(titlePage[_page]!),
       ),
       body: pages[_page],
       bottomNavigationBar: BottomNavigationBar(
@@ -96,5 +99,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-

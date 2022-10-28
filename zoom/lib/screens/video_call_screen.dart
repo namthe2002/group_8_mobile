@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
+
 import '../resources/auth_methods.dart';
 import '../resources/jitsi_meet_methods.dart';
 import '../widgets/meeting_options.dart';
@@ -66,78 +69,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String textiD ='';
-    // return Scaffold(
-    //   backgroundColor: Colors.grey.shade200,
-    //   //Colors.white,
-    //   appBar: AppBar(
-    //     backgroundColor: Colors.white,
-    //     title: Text('Tham gia cuộc họp', style: TextStyle(color: Colors.black)),
-    //     centerTitle: true,
-    //     elevation: 0,
-    //   ),
-    //   body: Padding(
-    //     padding: const EdgeInsets.only(top: 18.0),
-    //     child: Column(
-    //       children: [
-    //         Padding(
-    //           padding: const EdgeInsets.only(top: 10, bottom: 20),
-    //           child: Container(
-    //             decoration: const BoxDecoration(
-    //               color: Colors.white,
-    //             ),
-    //             child: Row(
-    //               children: [
-    //                 // const TextField(
-    //                 //   textAlign: TextAlign.center,
-    //                 //   decoration:
-    //                 //       InputDecoration.collapsed(hintText: 'ID Cuộc họp'),
-    //                 // ),
-    //                 Expanded(
-    //                     child: Text(
-    //                   'ID cuộc họp',
-    //                   style: TextStyle(fontSize: 18),
-    //                   textAlign: TextAlign.center,
-    //                 )),
-    //                 IconButton(
-    //                     icon: Icon(
-    //                       Icons.expand_circle_down_outlined,
-    //                       color: Colors.blue.shade600,
-    //                     ),
-    //                     onPressed: () {}),
-    //               ],
-    //             ),
-    //           ),
-    //         ),
-    //         Padding(
-    //           padding: const EdgeInsets.only(bottom: 20),
-    //           child: Text(
-    //             'Tham gia với liên kết cá nhân',
-    //             style: TextStyle(color: Colors.blue.shade900),
-    //           ),
-    //         ),
-    //         Container(
-    //           height: 40,
-    //           decoration: const BoxDecoration(
-    //             color: Colors.white,
-    //           ),
-    //           child: Row(
-    //             children: [
-    //               Expanded(
-    //                   child: Text(
-    //                 'ID cuộc họp',
-    //                 style: TextStyle(fontSize: 18),
-    //                 textAlign: TextAlign.center,
-    //               )),
-    //             ],
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
     return Scaffold(
-
       backgroundColor: color2,
       appBar: AppBar(
         leading: IconButton(
@@ -145,14 +77,10 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
             //Navigator.of(context).pushReplacementNamed('/home-screen');
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: const Icon(Icons.arrow_back_ios_new),
           color: CupertinoColors.darkBackgroundGray,
         ),
-        shape: const Border(
-            bottom: BorderSide(
-          width: 1,
-          color: Colors.grey,
-        )),
+        shape: Border.all(width: 0.5, color: Colors.grey.shade300),
         elevation: 0,
         backgroundColor: Colors.white,
         title: const Text(
@@ -162,43 +90,21 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 20.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
             child: Column(
               children: [
                 Column(
                   children: [
+                    // ignore: sized_box_for_whitespace
                     Container(
-                        // decoration: BoxDecoration(
-                        //     border: Border.all(color: Colors.grey, width: 0.3)),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                                width: 0.5, color: Colors.grey.shade300)),
                         height: 53,
-                        child:
-                            // TextField(
-                            //   controller: meetingIdController,
-                            //   onChanged: (temp) {
-                            //     setState(() {
-                            //       meetingIdController.text = temp;
-                            //     });
-                            //   },
-                            //   maxLines: 1,
-                            //   textDirection: TextDirection.ltr ,
-                            //   textAlign: TextAlign.center,
-                            //   keyboardType: TextInputType.number,
-                            //   decoration: InputDecoration(
-                            //     filled: true,
-                            //     fillColor: Colors.white,
-                            //     border: InputBorder.none,
-                            //     hintText: 'ID Cuộc họp',
-                            //   ),
-                            // ),
-                            TextField(
-                          onChanged: (val) {
-                            setState(() {
-                              textiD = val;
-                            });
-
-                          },
+                        child: TextField(
                           controller: meetingIdController,
                           maxLines: 1,
                           textAlign: TextAlign.center,
@@ -211,38 +117,25 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                             hintTextDirection: TextDirection.ltr,
                           ),
                         )),
-                    SizedBox(
-                        // decoration: BoxDecoration(
-                        //     border: Border.all(color: Colors.grey, width: 0.3)),
-                        height: 53,
-                        child: TextField(
-                          controller: nameController,
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
-                          keyboardType: TextInputType.text,
-                          decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                            hintText: 'Tên của bạn',
-                            hintTextDirection: TextDirection.ltr,
-                          ),
-                        )
-                        // TextField(
-                        //   controller: nameController,
-                        //   maxLines: 1,
-                        //   textAlign: TextAlign.center,
-                        //   keyboardType: TextInputType.text,
-                        //   decoration: InputDecoration(
-                        //     filled: true,
-                        //     fillColor: Colors.white,
-                        //     border: InputBorder.none,
-                        //     hintText: 'Tên của bạn',
-                        //     hintTextDirection: TextDirection.ltr,
-                        //     //  contentPadding: EdgeInsets.fromLTRB(16, 8, 0, 0),
-                        //   ),
-                        // ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                              width: 0.5, color: Colors.grey.shade300)),
+                      child: TextField(
+                        controller: nameController,
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        keyboardType: TextInputType.text,
+                        decoration: const InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          border: InputBorder.none,
+                          hintText: 'Tên của bạn',
+                          hintTextDirection: TextDirection.ltr,
                         ),
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: meetingIdController.text.trim().isEmpty
@@ -251,8 +144,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          fixedSize: const Size(240, 47),
-                          primary: Colors.blue.shade600),
+                          backgroundColor: Colors.blue.shade600,
+                          fixedSize: const Size(240, 47)),
                       child: const Text(
                         'Tham gia',
                         style: TextStyle(
@@ -266,8 +159,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                       padding: EdgeInsets.only(bottom: 18.0),
                       child: Text('TÙY CHỌN THAM GIA'),
                     ),
-                    Container(
-                      height: 56,
+                    SizedBox(
+                      height: 50,
                       // decoration:
                       //     BoxDecoration(border: Border.all(color: Colors.grey)),
                       child: MeetingOption(
@@ -279,16 +172,16 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
                     const SizedBox(
                       height: 1.5,
                     ),
-                    Container(
+                    SizedBox(
                       // decoration:
                       //     BoxDecoration(border: Border.all(color: Colors.grey)),
-                      height: 56,
+                      height: 50,
                       child: MeetingOption(
                         text: 'Tắt Video của tôi',
                         isMute: isVideoMuted,
                         onChange: toggleVideoMuted,
                       ),
-                    ),
+                    )
                   ],
                 ),
               ],

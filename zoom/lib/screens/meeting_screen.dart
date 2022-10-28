@@ -1,4 +1,5 @@
 import 'dart:math';
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom/resources/jitsi_meet_methods.dart';

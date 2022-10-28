@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // import 'package:jitsi_meet/feature_flag/feature_flag.dart';
 // import 'package:jitsi_meet/jitsi_meet.dart';
+// ignore: depend_on_referenced_packages
 import 'package:jitsi_meet_wrapper/jitsi_meet_wrapper.dart';
 import 'package:zoom/resources/auth_methods.dart';
 

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:zoom/screens/login_screen.dart';
 
 import '../resources/auth_methods.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/logoutbutton.dart';
 
 extension HexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
@@ -27,7 +25,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthMethods _authMethods = AuthMethods();
+    final AuthMethods authMethods = AuthMethods();
 
     return Scaffold(
       body: Padding(
@@ -40,15 +38,15 @@ class SettingScreen extends StatelessWidget {
                   color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(15)),
               child: ListTile(
-                  visualDensity: VisualDensity(vertical: 3), // to expand
+                  visualDensity: const VisualDensity(vertical: 3), // to expand
                   leading: ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
                     child: Image.network(
-                      '${_authMethods.user?.photoURL}',
+                      '${authMethods.user?.photoURL}',
                       fit: BoxFit.fill,
                     ),
                   ),
-                  title: Text('${_authMethods.user?.displayName}'),
+                  title: Text('${authMethods.user?.displayName}'),
                   subtitle: Row(
                     children: [
                       Image.asset(
@@ -56,24 +54,24 @@ class SettingScreen extends StatelessWidget {
                         width: 20,
                         height: 20,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text('${_authMethods.user?.email}'),
+                      Text('${authMethods.user?.email}'),
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Text('Các tính năng thêm'.toUpperCase(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.grey,
                 ),
                 textAlign: TextAlign.start,
                 softWrap: true),
-            Divider(),
+            const Divider(),
             const ListTile(
               leading: Icon(
                 Icons.settings,
@@ -127,13 +125,7 @@ class SettingScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CustomButton(
-                      text: 'Đăng xuất',
-                      onPress: () async {
-                        await _authMethods.signOut();
-                        // Navigator.of(context).pushNamed('/login');
-                        Get.offAll(const LoginScreen());
-                      }),
+                  LogoutButton(authMethods: authMethods),
                 ],
               ),
             )
