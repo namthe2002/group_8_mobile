@@ -6,19 +6,20 @@ class HomeMeetingButton extends StatelessWidget {
   final String text;
   final Color color;
 
-  HomeMeetingButton({
+  const HomeMeetingButton({
+    Key? key,
     required this.onPressed,
     required this.icon,
-    required this.text, required this.color,
-  });
+    required this.text,
+    required this.color,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width/5,
+    return SizedBox(
+      width: MediaQuery.of(context).size.width / 5,
       height: 97,
       child: GestureDetector(
-
         onTap: onPressed,
         child: Column(
           children: [
@@ -29,14 +30,18 @@ class HomeMeetingButton extends StatelessWidget {
                 color: color,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Icon(icon,  color: Colors.white,
-                size: 30,),
-
+              child: Icon(
+                icon,
+                color: Colors.white,
+                size: 30,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
-              text,textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 11,
+              text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 11,
                 color: Colors.grey,
               ),
             )

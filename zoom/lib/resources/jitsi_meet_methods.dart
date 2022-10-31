@@ -36,7 +36,8 @@ class JitsiMeetMethods {
       );
 
       await _firestoreMethods.addToMeetHistory(roomName);
-      await JitsiMeetWrapper.joinMeeting(options: options, listener: JitsiMeetingListener());
+      await JitsiMeetWrapper.joinMeeting(
+          options: options, listener: JitsiMeetingListener());
       FeatureFlag.isWelcomePageEnabled;
       FeatureFlag.resolution;
       FeatureFlag.isAddPeopleEnabled;

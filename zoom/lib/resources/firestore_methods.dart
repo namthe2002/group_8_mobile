@@ -26,7 +26,7 @@ class FirestoreMethods {
           .add({
         'meetingName': meetingName,
         'creatAt': DateTime.now().toIso8601String(),
-        'hostName' : _authMethods.user?.displayName
+        'hostName': _authMethods.user?.displayName
       });
     } catch (e) {
       if (kDebugMode) {

@@ -1,10 +1,12 @@
 import 'dart:math';
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom/resources/jitsi_meet_methods.dart';
 import 'package:zoom/screens/video_call_screen.dart';
 
 import '../widgets/home_meeting_button.dart';
+
 extension HexColor on Color {
   /// String is in the format "aabbcc" or "ffaabbcc" with an optional leading "#".
   static Color fromHex(String hexString) {
@@ -21,24 +23,24 @@ extension HexColor on Color {
       '${green.toRadixString(16).padLeft(2, '0')}'
       '${blue.toRadixString(16).padLeft(2, '0')}';
 }
+
 class MeetingScreen extends StatelessWidget {
-   MeetingScreen({Key? key}) : super(key: key);
+  MeetingScreen({Key? key}) : super(key: key);
 
+  final Color cam = HexColor.fromHex('DCD8D8FF');
+  final Color xanh = HexColor.fromHex('#0a72ec');
 
-   final Color cam = HexColor.fromHex('DCD8D8FF');
-   final Color xanh = HexColor.fromHex('#0a72ec');
-
-   final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
-  createNewMeeting () async {
+  final JitsiMeetMethods _jitsiMeetMethods = JitsiMeetMethods();
+  createNewMeeting() async {
     var random = Random();
-    String roomName = (random.nextInt(1000000)+1000000).toString();
-    _jitsiMeetMethods.createMeeting(roomName: roomName, isAudioMuted: true, isVideoMuted: true);
+    String roomName = (random.nextInt(1000000) + 1000000).toString();
+    _jitsiMeetMethods.createMeeting(
+        roomName: roomName, isAudioMuted: true, isVideoMuted: true);
   }
 
-  joinNewMeeting (BuildContext context) {
+  joinNewMeeting(BuildContext context) {
     //Navigator.of(context).pushNamed('/video-call-screen');
     Get.to(const VideoCallScreen());
-
   }
 
   @override
@@ -51,7 +53,6 @@ class MeetingScreen extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 HomeMeetingButton(
                   onPressed: createNewMeeting,
                   icon: Icons.video_call_rounded,

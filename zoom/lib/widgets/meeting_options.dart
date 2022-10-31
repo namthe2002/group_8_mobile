@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MeetingOption extends StatelessWidget {
   final String text;
   bool isMute;
   final Function(bool) onChange;
-   MeetingOption({
+  MeetingOption({
     Key? key,
     required this.text,
     required this.isMute,

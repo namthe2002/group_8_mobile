@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'have_account_check.dart';
+
 class LoginForm extends StatelessWidget {
   const LoginForm({
     Key? key,
@@ -15,10 +16,10 @@ class LoginForm extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             onSaved: (email) {},
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: "Your email",
               prefixIcon: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
                 child: Icon(Icons.person),
               ),
             ),
@@ -28,10 +29,10 @@ class LoginForm extends StatelessWidget {
             child: TextFormField(
               textInputAction: TextInputAction.done,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Your password",
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8),
                   child: Icon(Icons.lock),
                 ),
               ),
@@ -49,9 +50,7 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           AlreadyHaveAnAccountCheck(
-            press: () {
-
-            },
+            press: () {},
           ),
         ],
       ),
