@@ -34,6 +34,9 @@ Thành Viên
 ![zoom](https://user-images.githubusercontent.com/73698168/193205739-532a614c-5e56-49bc-a0cb-4dff271d4f86.gif)
 ## Week 8 
 * Monkey test
-* 
-![image](https://user-images.githubusercontent.com/73698168/198537531-5486cc3d-1203-4f26-8e17-982f228de95a.png)
+* Unit test (kiểm thử validator login)
+![image]([https://user-images.githubusercontent.com/73698168/198537531-5486cc3d-1203-4f26-8e17-982f228de95a.png](https://scontent.fhan2-1.fna.fbcdn.net/v/t1.15752-9/313605123_3297932843808325_7963447343834509400_n.png?_nc_cat=101&ccb=1-7&_nc_sid=ae9488&_nc_ohc=jVdFWVB5adAAX8utVtB&_nc_ht=scontent.fhan2-1.fna&oh=03_AdRxvdO8dnzM_V8JLSz9HBmTVPAAo_KHdowwJwWHK4vNpw&oe=638B65D0))
+![image]([https://user-images.githubusercontent.com/73698168/198537531-5486cc3d-1203-4f26-8e17-982f228de95a.png](https://scontent.fhan2-1.fna.fbcdn.net/v/t1.15752-9/312380035_2076577982541282_2077164705070810351_n.png?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_ohc=aTpGuuGxzZwAX94P7sS&tn=xmMarLfjS_OwtRpL&_nc_ht=scontent.fhan2-1.fna&oh=03_AdRGx6mRryhoFJc0wWmTr1Hkw9Y3JpQLMwAUqVSfIpKG0g&oe=638B3733))
+![image]([https://user-images.githubusercontent.com/73698168/198537531-5486cc3d-1203-4f26-8e17-982f228de95a.png](https://scontent.fhan2-2.fna.fbcdn.net/v/t1.15752-9/309782568_1828141827540197_7220280099223093864_n.png?_nc_cat=111&ccb=1-7&_nc_sid=ae9488&_nc_ohc=V3xlSA-rRaAAX-fBicq&_nc_ht=scontent.fhan2-2.fna&oh=03_AdS2rXk6qNvJGEmoaeGYBf5bng6cA9uCGolOLIQZtiQKmA&oe=638B6101))
+ 
 
