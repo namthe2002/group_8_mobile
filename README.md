@@ -42,3 +42,11 @@ Thành Viên
 
 ![test_result](https://user-images.githubusercontent.com/80814904/199762848-f2643215-0698-4b83-a8e7-9dbad9f200db.png)
 
+## Week 11
+* Call Firebase API
+
+![user](https://user-images.githubusercontent.com/80814904/201293204-2bbff6e3-c224-494e-a0a5-b78d176b1797.png)
+
+![auth](https://user-images.githubusercontent.com/80814904/201293211-dbf0bb3e-855e-4ada-8cf4-48718ffd9ae7.png)
+
+
